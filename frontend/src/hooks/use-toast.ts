@@ -1,7 +1,14 @@
 "use client";
 
 import * as React from "react";
-import type { ToastActionElement, ToastProps } from "@/components/ui/toast";
+export type ToastActionElement = React.ReactElement;
+export interface ToastProps {
+  className?: string;
+  variant?: "default" | "destructive";
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  action?: ToastActionElement;
+}
 
 const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;
@@ -125,7 +132,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
-      onOpenChange: (open) => {
+      onOpenChange: (open: boolean) => {
         if (!open) dismiss();
       },
     },
